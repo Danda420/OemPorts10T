@@ -1,0 +1,41 @@
+body {
+    font-family: 'Inter', sans-serif;
+}
+
+.tab-btn {
+    color: #6b7280; /* gray-500 */
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s;
+}
+    
+.tab-btn:hover {
+    color: #d1d5db; /* gray-800 */
+    border-bottom-color: #d1d5db; /* gray-300 */
+}
+    
+.tab-btn.active {
+    color: #3b82f6; /* gray-800 dark:text-white */
+    border-bottom-color: #3b82f6; /* blue-500 */
+}
+    
+.dark .tab-btn {
+    color: #9ca3af; /* gray-400 */
+}
+    
+.dark .tab-btn:hover {
+    color: #f9fafb; /* white */
+    border-bottom-color: #4b5563; /* gray-600 */
+}
+    
+.dark .tab-btn.active {
+    color: #f9fafb; /* white */
+    border-bottom-color: #3b82f6; /* blue-500 */
+}
+    
+.tab-content {
+    display: none;
+}
+    
+.tab-content.active {
+    display: block;
+}

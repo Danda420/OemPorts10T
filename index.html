@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/png" href="res/ic.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="res/styles.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="app.js" defer></script>
+  <title>OEM Ports by Danda</title>
+</head>
+<body class="bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-white min-h-screen">
+  <header class="p-6 bg-gray-200 dark:bg-gray-800 shadow-md">
+    <h1 class="text-3xl font-bold">OEM Ports for Xiaomi Devices</h1>
+    <p class="text-gray-600 dark:text-gray-400">Mi 10T/Pro, Mi 11T Pro, POCO F3, F4</p>
+    
+    <!-- Nav -->
+    <div class="flex border-b border-gray-300 dark:border-gray-600 mt-4">
+      <btn class="tab-btn active px-4 py-2 font-medium text-sm focus:outline-none" data-tab="roms">
+        ROMs
+      </btn>
+      <btn class="tab-btn px-4 py-2 font-medium text-sm focus:outline-none" data-tab="kernels">
+        Kernels
+      </btn>
+    </div>
+  </header>
+
+  <main class="p-6">
+    <!-- ROM -->
+    <div id="roms-tab" class="tab-content active">
+      <section id="roms-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      </section>
+    </div>
+
+    <!-- Kernel -->
+    <div id="kernels-tab" class="tab-content hidden">
+      <section id="kernels-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      </section>
+  </div>
+  </main>
+
+  <footer class="text-center text-gray-500 dark:text-gray-400 text-sm p-6 mt-8">
+    <div class="flex flex-col space-y-1">
+      <div>&copy; 2025 Danda - OemPorts10T</div>
+      <div>
+        <a href="https://t.me/ProjectUnknown01" class="hover:underline">Telegram Channel</a>
+        <span> | </span>
+        <a href="https://t.me/OemPorts10T" class="hover:underline">Telegram Group</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

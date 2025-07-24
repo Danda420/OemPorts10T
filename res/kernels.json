@@ -1,0 +1,11 @@
+[
+  {
+    "id": "oxygen-plus",
+    "title": "Oxygen+ Kernel",
+    "image": "res/oxyplus.png",
+    "description": "CLO Based kernel for PORTS & AOSP | Upstreamed to latest Linux 4.19.y.",
+    "devices": "MI 10T/Pro, POCO F3, POCO F4",
+    "sourceUrl": "https://github.com/Danda420/kernel_xiaomi_sm8250",
+    "downloadUrl": "https://t.me/OxygenPlusKernel"
+  }
+]
