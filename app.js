@@ -7,8 +7,6 @@ tailwind.config = {
 
 document.addEventListener('DOMContentLoaded', function() {
   loadROMs();
-  loadKernels();
-  
   initTabs();
 });
 
@@ -17,28 +15,52 @@ function initTabs() {
   
   tabButtons.forEach(button => {
     button.addEventListener('click', function() {
-      document.querySelectorAll('.tab-btn').forEach(btn => {
+      const currentActiveTab = document.querySelector('.tab-content.active');
+      const newTabId = this.getAttribute('data-tab') + '-tab';
+      const newTabContent = document.getElementById(newTabId);
+      
+      if (currentActiveTab === newTabContent) return;
+
+      const currentIndex = Array.from(tabButtons).findIndex(btn => btn.classList.contains('active'));
+      const newIndex = Array.from(tabButtons).findIndex(btn => btn === this);
+      const direction = newIndex > currentIndex ? 'right' : 'left';
+      const currentCards = currentActiveTab.querySelectorAll('.card');
+      currentCards.forEach((card, index) => {
+        card.style.transitionDelay = `${index * 50}ms`;
+        card.classList.add(direction === 'right' ? 'slide-out-left' : 'slide-out-right');
+      });
+      
+      tabButtons.forEach(btn => {
         btn.classList.remove('active');
         btn.setAttribute('aria-selected', 'false');
       });
-      document.querySelectorAll('.tab-content').forEach(content => {
-        content.classList.remove('active');
-        content.setAttribute('aria-hidden', 'true');
-      });
-      
       this.classList.add('active');
       this.setAttribute('aria-selected', 'true');
       
-      const tabId = this.getAttribute('data-tab') + '-tab';
-      const tabContent = document.getElementById(tabId);
-      if (tabContent) {
-        tabContent.classList.add('active');
-        tabContent.setAttribute('aria-hidden', 'false');
+      setTimeout(() => {
+        currentActiveTab.classList.remove('active');
+        currentCards.forEach(card => {
+          card.classList.remove('slide-out-left', 'slide-out-right');
+          card.style.transitionDelay = '';
+        });
         
-        if (tabId === 'kernels-tab' && tabContent.innerHTML.trim() === '') {
+        newTabContent.classList.add('active');
+        
+        const newCards = newTabContent.querySelectorAll('.card');
+        newCards.forEach((card, index) => {
+          card.style.transitionDelay = `${index * 50}ms`;
+          card.classList.add(direction === 'right' ? 'slide-out-right' : 'slide-out-left');
+          setTimeout(() => {
+            card.classList.remove('slide-out-left', 'slide-out-right');
+            card.style.transitionDelay = '';
+          }, 10);
+        });
+        
+        // Load content if empty
+        if (newTabId === 'kernels-tab' && document.getElementById('kernels-container').innerHTML.trim() === '') {
           loadKernels();
         }
-      }
+      }, 100 + (currentCards.length * 50));
     });
   });
 }
@@ -53,7 +75,7 @@ function loadROMs() {
     })
     .then(roms => {
       const container = document.getElementById('roms-container');
-      container.innerHTML = '';
+      container.innerHTML = ''; // Clear any loading/placeholder content
       
       roms.forEach(rom => {
         const card = document.createElement('div');
@@ -80,7 +102,7 @@ function loadROMs() {
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
             </svg>
-            Failed to load ROMs. Please try again later.
+            Failed to load Data. Please try again later.
           </div>
         </div>
       `;
@@ -128,7 +150,7 @@ function loadKernels() {
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
             </svg>
-            Failed to load Kernels. Please try again later.
+            Failed to load Data. Please try again later.
           </div>
         </div>
       `;

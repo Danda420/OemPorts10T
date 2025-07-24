@@ -13,31 +13,32 @@
 </head>
 <body class="bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-white min-h-screen">
   <header class="p-6 bg-gray-200 dark:bg-gray-800 shadow-md">
-    <h1 class="text-3xl font-bold">OEM Ports for Xiaomi Devices</h1>
-    <p class="text-gray-600 dark:text-gray-400">Mi 10T/Pro, Mi 11T Pro, POCO F3, F4</p>
+    <h1 class="text-3xl font-bold">OEM ROM Ports & Kernel</h1>
+    <p class="text-gray-600 dark:text-gray-400">for Xiaomi Devices</p>
     
     <!-- Nav -->
     <div class="flex border-b border-gray-300 dark:border-gray-600 mt-4">
-      <btn class="tab-btn active px-4 py-2 font-medium text-sm focus:outline-none" data-tab="roms">
+      <button class="tab-btn active px-4 py-2 font-medium text-sm focus:outline-none" data-tab="roms">
         ROMs
-      </btn>
-      <btn class="tab-btn px-4 py-2 font-medium text-sm focus:outline-none" data-tab="kernels">
+      </button>
+      <button class="tab-btn px-4 py-2 font-medium text-sm focus:outline-none" data-tab="kernels">
         Kernels
-      </btn>
+      </button>
     </div>
   </header>
 
   <main class="p-6">
+  <div class="tab-content-container">
     <!-- ROM -->
     <div id="roms-tab" class="tab-content active">
       <section id="roms-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       </section>
     </div>
-
     <!-- Kernel -->
-    <div id="kernels-tab" class="tab-content hidden">
+    <div id="kernels-tab" class="tab-content active">
       <section id="kernels-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       </section>
+    </div>
   </div>
   </main>
 
