@@ -13,19 +13,29 @@
 </head>
 <body>
   <header class="p-6 shadow-md header-container">
-    <div class="flex justify-between items-center">
-      <div>
-        <h1 class="text-3xl font-bold">OEM ROM Ports & Kernel</h1>
-        <p class="subtitle">for Xiaomi Devices</p>
-      </div>
+    <div class="flex items-center justify-between w-full">
+      <h1 class="text-3xl font-bold">OEM ROM Ports & Kernel</h1>
       <button class="theme-toggle-btn" onclick="toggleTheme()">🌙</button>
     </div>
+    <p class="subtitle">for Xiaomi Devices</p>
     <!-- Nav -->
     <div class="flex border-b mt-4 nav-divider">
       <button class="tab-btn active px-4 py-2 font-medium text-sm" data-tab="roms">ROMs</button>
       <button class="tab-btn px-4 py-2 font-medium text-sm" data-tab="kernels">Kernels</button>
+      <button class="tab-btn px-4 py-2 font-medium text-sm" data-tab="flashing">Flashing Guide</button>
     </div>
   </header>
+
+  <div id="infoModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+    <div class="card rounded-xl shadow-lg w-11/12 max-w-3xl max-h-[90vh] flex flex-col">
+      <div class="flex justify-between items-center p-4 border-b dark:border-gray-700">
+        <h3 class="text-lg font-semibold">ROM Info</h3>
+        <button onclick="closeModal()" class="text-gray-500 hover:text-red-500 text-2xl font-bold">&times;</button>
+      </div>
+      <div id="modalContent" class="overflow-y-auto flex-1 p-4"></div>
+    </div>
+  </div>
+
 
   <main class="p-6">
     <div class="tab-content-container">
@@ -34,8 +44,13 @@
         <section id="roms-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></section>
       </div>
       <!-- Kernels -->
-      <div id="kernels-tab" class="tab-content active">
+      <div id="kernels-tab" class="tab-content hidden">
         <section id="kernels-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></section>
+      </div>
+      <!-- Flashing Guide -->
+      <div id="flashing-tab" class="tab-content hidden">
+        <section id="flashing-container" class="prose dark:prose-invert max-w-none">
+        </section>
       </div>
     </div>
   </main>

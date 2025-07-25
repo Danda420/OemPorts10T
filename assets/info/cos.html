@@ -1,0 +1,28 @@
+<div class="modal-content">
+  <h2 class="text-2xl font-bold mb-4">ColorOS</h2>
+  
+  <div>
+     <ul class="list-disc pl-5 space-y-2">
+      <li>Enforcing selinux (except MI11T Pro)</li>
+      <li>Play integrity will pass out of the box. If Play integrity fails, reboot once or run "su -c pif-updater" on terminal if you have root</li>
+      <li>Only kernel with the same base as stock will boot.</li>
+      <li>This is a CN based rom so you need to setup stuff for background processes. Open DeviceShield app > Utility tools > App auto start, then turn on the app you wanna give autostart perm.. after that go to Background running option in DeviceShield app, then allow apps you want to run in the background. if still wont run in background, lock the app on recent...</li>
+      <li>Dont switch to NON KSU kernel cz it'll break stuff (transition script fixes needs ksu domain cz stock domain spits out unfixable denials)</li>
+      <li class="font-bold">!!!!COLOROS SPECIFIC!!!!</li>
+      <li class="font-bold">if you can't setup lockscreen, install apps & login gmail or other acc, erase frp</li>
+      <a>put your phone into fastboot, connect it to desktop, run this in adb tools</a>
+      <a>fastboot erase frp</a>
+      <li class="font-bold">How to run apps in background</li>
+      <a>Open Apps section on settings</a>
+      <a>1. App management > select your app > battery usage > switch on allow background activity </a>
+      <a>2. Auto Launch > turn the switch on for your selected apps</a>
+      <a>3. Associated Launch > turn the switch on for your selected apps</a>
+      <a>If cos is still killing your apps in background, lock it in recent.</a>
+      <li class="font-bold">How to get lockscreen and normal notifications</li>
+      <a>Open Notification & Quick Settings section on settings</a>
+      <a>1. Scroll down to "App notifications"</a>
+      <a>2. Select the app that you want</a>
+      <a>3. Allow all lockscreen, banner, app icon badges(if theres any) and switch on Ring & Vibrate (Switch on allow in DND too if you want the app to ring and do shi even when on DND)</a>
+    </ul>
+  </div>
+</div>

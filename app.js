@@ -24,45 +24,40 @@ function initTabs() {
       const currentIndex = Array.from(tabButtons).findIndex(btn => btn.classList.contains('active'));
       const newIndex = Array.from(tabButtons).findIndex(btn => btn === this);
       const direction = newIndex > currentIndex ? 'right' : 'left';
-      const currentCards = currentActiveTab.querySelectorAll('.card');
-      currentCards.forEach((card, index) => {
-        card.style.transitionDelay = `${index * 50}ms`;
-        card.classList.add(direction === 'right' ? 'slide-out-left' : 'slide-out-right');
-      });
+
+      currentActiveTab.classList.add(direction === 'right' ? 'slide-out-left' : 'slide-out-right');
+      newTabContent.classList.add(direction === 'right' ? 'slide-out-right' : 'slide-out-left');
+      newTabContent.classList.remove('hidden');
       
       tabButtons.forEach(btn => {
         btn.classList.remove('active');
-        btn.setAttribute('aria-selected', 'false');
       });
       this.classList.add('active');
-      this.setAttribute('aria-selected', 'true');
-      
+
       setTimeout(() => {
-        currentActiveTab.classList.remove('active');
-        currentCards.forEach(card => {
-          card.classList.remove('slide-out-left', 'slide-out-right');
-          card.style.transitionDelay = '';
-        });
+        currentActiveTab.classList.remove('active', 'slide-out-left', 'slide-out-right');
+        currentActiveTab.classList.add('hidden');
         
         newTabContent.classList.add('active');
+        newTabContent.classList.remove('slide-out-left', 'slide-out-right');
         
-        const newCards = newTabContent.querySelectorAll('.card');
-        newCards.forEach((card, index) => {
-          card.style.transitionDelay = `${index * 50}ms`;
-          card.classList.add(direction === 'right' ? 'slide-out-right' : 'slide-out-left');
-          setTimeout(() => {
-            card.classList.remove('slide-out-left', 'slide-out-right');
-            card.style.transitionDelay = '';
-          }, 10);
-        });
-        
-        // Load content if empty
-        if (newTabId === 'kernels-tab' && document.getElementById('kernels-container').innerHTML.trim() === '') {
+        if (newTabId === 'roms-tab' && document.getElementById('roms-container').innerHTML.trim() === '') {
+          loadROMs();
+        }
+        else if (newTabId === 'kernels-tab' && document.getElementById('kernels-container').innerHTML.trim() === '') {
           loadKernels();
         }
-      }, 100 + (currentCards.length * 50));
+        else if (newTabId === 'flashing-tab' && document.getElementById('flashing-container').innerHTML.trim() === '') {
+          loadFlashingGuide();
+        }
+      }, 100);
     });
   });
+
+  const activeTab = document.querySelector('.tab-btn.active').getAttribute('data-tab');
+  if (activeTab === 'roms') loadROMs();
+  else if (activeTab === 'kernels') loadKernels();
+  else if (activeTab === 'flashing') loadFlashingGuide();
 }
 
 function loadROMs() {
@@ -85,6 +80,10 @@ function loadROMs() {
           <h2 class="text-xl font-semibold mb-1">${rom.title}</h2>
           <p class="desc mb-2">${rom.description}</p>
           <p class="text-sm device-text">Devices: ${rom.devices}</p>
+          <button onclick="loadModal('${rom.infoUrl}')" 
+              class="inline-block mt-3 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded transition-colors duration-200">
+            Info
+          </button>
           <a href="${rom.downloadUrl}" target="_blank" rel="noopener noreferrer" 
              class="inline-block mt-3 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded transition-colors duration-200">
             Downloads
@@ -157,9 +156,76 @@ function loadKernels() {
     });
 }
 
+function loadFlashingGuide() {
+  const container = document.getElementById('flashing-container');
+  container.innerHTML = `
+    <div class="flex justify-center items-center h-64">
+      <div class="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
+    </div>
+  `;
+  
+  fetch('assets/flashing_guide.html')
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Failed to load guide');
+      }
+      return response.text();
+    })
+    .then(html => {
+      container.innerHTML = html;
+      
+      const style = document.createElement('style');
+      container.appendChild(style);
+    })
+    .catch(error => {
+      console.error('Error loading flashing guide:', error);
+      container.innerHTML = `
+        <div class="p-4 text-center text-red-500">
+          Failed to load guide. <a href="assets/flashing_guide.html" target="_blank" class="underline">Open directly</a>
+        </div>
+      `;
+    });
+}
+
 function toggleTheme() {
   const body = document.body;
   const btn = document.querySelector('.theme-toggle-btn');
   body.classList.toggle('light-mode');
   btn.textContent = body.classList.contains('light-mode') ? '☀️' : '🌙';
+}
+
+function loadModal(url) {
+  const modal = document.getElementById('infoModal');
+  const modalContent = document.getElementById('modalContent');
+  modalContent.innerHTML = `
+    <div class="flex justify-center items-center h-64">
+      <div class="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
+    </div>
+  `;
+  
+  modal.classList.remove('hidden');
+  fetch(url)
+    .then(response => response.text())
+    .then(html => {
+      modalContent.innerHTML = html;
+      
+      const style = document.createElement('style');
+      style.textContent = `
+        .modal-content img { max-width: 100%; }
+        .modal-content { padding: 1rem; }
+      `;
+      modalContent.appendChild(style);
+    })
+    .catch(error => {
+      modalContent.innerHTML = `
+        <div class="p-4 text-center text-red-500">
+          Failed to load content. <a href="${url}" target="_blank" class="underline">Open directly</a>
+        </div>
+      `;
+    });
+}
+
+function closeModal() {
+  document.getElementById('infoModal').classList.add('hidden');
+  document.getElementById('modalContent').innerHTML = '';
 }
