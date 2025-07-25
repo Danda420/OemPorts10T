@@ -1,48 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <link rel="icon" type="image/png" href="res/ic.png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="res/styles.css">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OEM Ports by Danda</title>
+  <link rel="icon" type="image/png" href="assets/res/ic.png" />
+  <link rel="stylesheet" href="assets/styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="app.js" defer></script>
-  <title>OEM Ports by Danda</title>
 </head>
-<body class="bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-white min-h-screen">
-  <header class="p-6 bg-gray-200 dark:bg-gray-800 shadow-md">
-    <h1 class="text-3xl font-bold">OEM ROM Ports & Kernel</h1>
-    <p class="text-gray-600 dark:text-gray-400">for Xiaomi Devices</p>
-    
+<body>
+  <header class="p-6 shadow-md header-container">
+    <div class="flex justify-between items-center">
+      <div>
+        <h1 class="text-3xl font-bold">OEM ROM Ports & Kernel</h1>
+        <p class="subtitle">for Xiaomi Devices</p>
+      </div>
+      <button class="theme-toggle-btn" onclick="toggleTheme()">🌙</button>
+    </div>
     <!-- Nav -->
-    <div class="flex border-b border-gray-300 dark:border-gray-600 mt-4">
-      <button class="tab-btn active px-4 py-2 font-medium text-sm focus:outline-none" data-tab="roms">
-        ROMs
-      </button>
-      <button class="tab-btn px-4 py-2 font-medium text-sm focus:outline-none" data-tab="kernels">
-        Kernels
-      </button>
+    <div class="flex border-b mt-4 nav-divider">
+      <button class="tab-btn active px-4 py-2 font-medium text-sm" data-tab="roms">ROMs</button>
+      <button class="tab-btn px-4 py-2 font-medium text-sm" data-tab="kernels">Kernels</button>
     </div>
   </header>
 
   <main class="p-6">
-  <div class="tab-content-container">
-    <!-- ROM -->
-    <div id="roms-tab" class="tab-content active">
-      <section id="roms-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      </section>
+    <div class="tab-content-container">
+      <!-- ROMs -->
+      <div id="roms-tab" class="tab-content active">
+        <section id="roms-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></section>
+      </div>
+      <!-- Kernels -->
+      <div id="kernels-tab" class="tab-content active">
+        <section id="kernels-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></section>
+      </div>
     </div>
-    <!-- Kernel -->
-    <div id="kernels-tab" class="tab-content active">
-      <section id="kernels-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      </section>
-    </div>
-  </div>
   </main>
 
-  <footer class="text-center text-gray-500 dark:text-gray-400 text-sm p-6 mt-8">
+  <footer class="text-center text-sm p-6 mt-8 footer-container">
     <div class="flex flex-col space-y-1">
       <div>&copy; 2025 Danda - OemPorts10T</div>
       <div>

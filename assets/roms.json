@@ -2,7 +2,7 @@
   {
     "id": "myui",
     "title": "Moto MYUI",
-    "image": "res/myui.png",
+    "image": "assets/res/myui.png",
     "description": "Motorola's MYUI Ports.",
     "devices": "POCO F3, F4, Mi 10T/Pro, Mi 11T Pro",
     "downloadUrl": "https://www.pling.com/p/2169477"
@@ -10,7 +10,7 @@
   {
     "id": "helloui",
     "title": "Moto HelloUI",
-    "image": "res/helloui.png",
+    "image": "assets/res/helloui.png",
     "description": "Motorola's HelloUI Ports.",
     "devices": "POCO F3, F4, Mi 10T/Pro, Mi 11T Pro",
     "downloadUrl": "https://www.pling.com/p/2169488"
@@ -18,7 +18,7 @@
   {
     "id": "nothingos",
     "title": "NothingOS",
-    "image": "res/nos.png",
+    "image": "assets/res/nos.png",
     "description": "NothingOS Ports.",
     "devices": "MI10T/Pro, MI11T Pro, POCO F3",
     "downloadUrl": "https://www.pling.com/p/2298798"
@@ -26,7 +26,7 @@
   {
     "id": "coloros",
     "title": "ColorOS",
-    "image": "res/cos.png",
+    "image": "assets/res/cos.png",
     "description": "ColorOS Ports.",
     "devices": "POCO F3, F4, Mi 10T/Pro, Mi 11T Pro",
     "downloadUrl": "https://www.pling.com/p/2228931"
@@ -34,7 +34,7 @@
   {
     "id": "oxygenos",
     "title": "OxygenOS",
-    "image": "res/oos.png",
+    "image": "assets/res/oos.png",
     "description": "OxygenOS Ports.",
     "devices": "POCO F3, F4, Mi 10T/Pro, Mi 11T Pro",
     "downloadUrl": "https://www.pling.com/p/2169486"
@@ -42,7 +42,7 @@
   {
     "id": "flymeos",
     "title": "FlymeOS",
-    "image": "res/flyme.png",
+    "image": "assets/res/flyme.png",
     "description": "Meizu's FlymeOS Ports.",
     "devices": "POCO F3, F4, Mi 10T/Pro, Mi 11T Pro",
     "downloadUrl": "https://www.pling.com/p/2203330"

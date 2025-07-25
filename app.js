@@ -66,7 +66,7 @@ function initTabs() {
 }
 
 function loadROMs() {
-  fetch('res/roms.json')
+  fetch('assets/roms.json')
     .then(response => {
       if (!response.ok) {
         throw new Error('Network response was not ok');
@@ -79,12 +79,12 @@ function loadROMs() {
       
       roms.forEach(rom => {
         const card = document.createElement('div');
-        card.className = 'bg-white dark:bg-gray-800 p-4 rounded-xl shadow-md hover:shadow-lg transition-shadow duration-200';
+        card.className = 'card';
         card.innerHTML = `
           <img src="${rom.image}" alt="${rom.title} Logo" class="mb-4 w-full h-auto rounded-lg">
           <h2 class="text-xl font-semibold mb-1">${rom.title}</h2>
-          <p class="text-gray-600 dark:text-gray-300 mb-2">${rom.description}</p>
-          <p class="text-sm text-gray-500 dark:text-gray-400">Devices: ${rom.devices}</p>
+          <p class="desc mb-2">${rom.description}</p>
+          <p class="text-sm device-text">Devices: ${rom.devices}</p>
           <a href="${rom.downloadUrl}" target="_blank" rel="noopener noreferrer" 
              class="inline-block mt-3 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded transition-colors duration-200">
             Downloads
@@ -110,7 +110,7 @@ function loadROMs() {
 }
 
 function loadKernels() {
-  fetch('res/kernels.json')
+  fetch('assets/kernels.json')
     .then(response => {
       if (!response.ok) {
         throw new Error('Network response was not ok');
@@ -123,12 +123,12 @@ function loadKernels() {
       
       kernels.forEach(kernel => {
         const card = document.createElement('div');
-        card.className = 'bg-white dark:bg-gray-800 p-4 rounded-xl shadow-md hover:shadow-lg transition-shadow duration-200';
+        card.className = 'card';
         card.innerHTML = `
           <img src="${kernel.image}" alt="${kernel.title} Logo" class="mb-4 w-full h-auto rounded-lg">
           <h2 class="text-xl font-semibold mb-1">${kernel.title}</h2>
-          <p class="text-gray-600 dark:text-gray-300 mb-2">${kernel.description}</p>
-          <p class="text-sm text-gray-500 dark:text-gray-400">Devices: ${kernel.devices}</p>
+          <p class="desc mb-2">${kernel.description}</p>
+          <p class="text-sm device-text">Devices: ${kernel.devices}</p>
           <a href="${kernel.sourceUrl}" target="_blank" rel="noopener noreferrer" 
              class="inline-block mt-3 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded transition-colors duration-200">
             Source
@@ -155,4 +155,11 @@ function loadKernels() {
         </div>
       `;
     });
+}
+
+function toggleTheme() {
+  const body = document.body;
+  const btn = document.querySelector('.theme-toggle-btn');
+  body.classList.toggle('light-mode');
+  btn.textContent = body.classList.contains('light-mode') ? '☀️' : '🌙';
 }

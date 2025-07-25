@@ -1,0 +1,151 @@
+body {
+  background-color: #202020;
+  color: white;
+  font-family: 'Inter', sans-serif;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.header-container {
+  background-color: #2a2a2a;
+  transition: background-color 0.3s;
+}
+
+.subtitle {
+  color: #aaa;
+}
+
+.nav-divider {
+  border-color: #444;
+}
+
+.theme-toggle-btn {
+  padding: 5px 10px;
+  border-radius: 5px;
+  background-color: #444;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  transition: background-color 0.3s;
+}
+
+.theme-toggle-btn:hover {
+  background-color: #666;
+}
+
+body.light-mode {
+  background-color: #f5f5f5;
+  color: #222;
+}
+
+body.light-mode .header-container,
+body.light-mode .footer-container {
+  background-color: #ffffff;
+}
+
+body.light-mode .subtitle {
+  color: #555;
+}
+
+body.light-mode .nav-divider {
+  border-color: #ccc;
+}
+
+body.light-mode .theme-toggle-btn {
+  background-color: #e0e0e0;
+  color: #000;
+}
+
+.tab-btn {
+    color: #6b7280;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s;
+}
+    
+.tab-btn:hover {
+    color: #d1d5db;
+    border-bottom-color: #d1d5db;
+}
+    
+.tab-btn.active {
+    color: #3b82f6;
+    border-bottom-color: #3b82f6;
+}
+    
+.dark .tab-btn {
+    color: #9ca3af;
+}
+    
+.dark .tab-btn:hover {
+    color: #f9fafb;
+    border-bottom-color: #4b5563;
+}
+    
+.dark .tab-btn.active {
+    color: #f9fafb;
+    border-bottom-color: #3b82f6;
+}
+
+.tab-content-container {
+  position: relative;
+  overflow: hidden;
+  min-height: 300px;
+}
+
+.tab-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  opacity: 0;
+  transform: translateX(20px);
+  transition: all 0.3s ease-in-out;
+  visibility: hidden;
+}
+
+.tab-content.active {
+  position: relative;
+  opacity: 1;
+  transform: translateX(0);
+  visibility: visible;
+}
+
+.tab-content.slide-out-left {
+  transform: translateX(-20px);
+}
+
+.tab-content.slide-out-right {
+  transform: translateX(20px);
+}
+
+.card {
+  background-color: #2a2a2a;
+  padding: 1rem;
+  border-radius: 0.75rem;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  transition: box-shadow 0.2s;
+}
+
+.card:hover {
+  box-shadow: 0 6px 14px rgba(0,0,0,0.3);
+}
+
+.light-mode .card {
+  background-color: #ffffff;
+}
+
+.card .desc {
+  color: #bbb;
+}
+
+.light-mode .card .desc {
+  color: #333;
+}
+
+.card .device-text {
+  color: #888;
+}
+
+.light-mode .card .device-text {
+  color: #555;
+}
