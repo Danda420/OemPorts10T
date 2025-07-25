@@ -38,8 +38,7 @@ body.light-mode {
   color: #222;
 }
 
-body.light-mode .header-container,
-body.light-mode .footer-container {
+body.light-mode .header-container {
   background-color: #ffffff;
 }
 
