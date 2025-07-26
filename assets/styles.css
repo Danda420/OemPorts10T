@@ -1,12 +1,12 @@
 body {
-  background-color: #202020;
+  background-color: #121212;
   color: white;
   font-family: 'Inter', sans-serif;
   transition: background-color 0.3s, color 0.3s;
 }
 
 .header-container {
-  background-color: #2a2a2a;
+  background-color: #1f1f1f;
   transition: background-color 0.3s;
 }
 
@@ -21,7 +21,7 @@ body {
 .theme-toggle-btn {
   padding: 5px 10px;
   border-radius: 5px;
-  background-color: #444;
+  background-color: #2a2a2a;
   color: white;
   border: none;
   cursor: pointer;
@@ -118,7 +118,7 @@ body.light-mode .theme-toggle-btn {
 }
 
 .card {
-  background-color: #2a2a2a;
+  background-color: #1f1f1f;
   padding: 1rem;
   border-radius: 0.75rem;
   box-shadow: 0 4px 8px rgba(0,0,0,0.2);
@@ -134,17 +134,17 @@ body.light-mode .theme-toggle-btn {
 }
 
 .card .desc {
-  color: #bbb;
+  color: #bbbbbb;
 }
 
 .light-mode .card .desc {
-  color: #333;
+  color: #333333;
 }
 
 .card .device-text {
-  color: #888;
+  color: #979797;
 }
 
 .light-mode .card .device-text {
-  color: #555;
+  color: #555555;
 }

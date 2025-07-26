@@ -1,14 +1,17 @@
 tailwind.config = {
-  darkMode: 'media',
+  darkMode: 'class',
   theme: {
     extend: {},
   },
 };
 
 document.addEventListener('DOMContentLoaded', function() {
+  setThemeFromSystem();
   loadROMs();
   initTabs();
 });
+
+window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', setThemeFromSystem);
 
 function initTabs() {
   const tabButtons = document.querySelectorAll('.tab-btn');
@@ -187,11 +190,9 @@ function loadFlashingGuide() {
     });
 }
 
-function toggleTheme() {
-  const body = document.body;
-  const btn = document.querySelector('.theme-toggle-btn');
-  body.classList.toggle('light-mode');
-  btn.textContent = body.classList.contains('light-mode') ? '☀️' : '🌙';
+function setThemeFromSystem() {
+  const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  document.body.classList.toggle('light-mode', !isDarkMode);
 }
 
 function loadModal(url) {
