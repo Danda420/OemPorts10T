@@ -53,14 +53,22 @@ function initTabs() {
         else if (newTabId === 'flashing-tab' && document.getElementById('flashing-container').innerHTML.trim() === '') {
           loadFlashingGuide();
         }
+
+        window.history.replaceState(null, null, `#${this.getAttribute('data-tab')}`);
       }, 100);
     });
   });
 
-  const activeTab = document.querySelector('.tab-btn.active').getAttribute('data-tab');
-  if (activeTab === 'roms') loadROMs();
-  else if (activeTab === 'kernels') loadKernels();
-  else if (activeTab === 'flashing') loadFlashingGuide();
+  const hash = window.location.hash.substring(1);
+  if (['roms', 'kernels', 'flashing'].includes(hash)) {
+    const tabButton = document.querySelector(`.tab-btn[data-tab="${hash}"]`);
+    if (tabButton) tabButton.click();
+  } else {
+    const activeTab = document.querySelector('.tab-btn.active').getAttribute('data-tab');
+    if (activeTab === 'roms') loadROMs();
+    else if (activeTab === 'kernels') loadKernels();
+    else if (activeTab === 'flashing') loadFlashingGuide();
+  }
 }
 
 function loadROMs() {
