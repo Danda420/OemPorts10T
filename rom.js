@@ -80,6 +80,9 @@ function renderReleases(releases) {
 
     const createOutlineBtn = (text, url) => {
       if (!url) return '';
+      if (url.includes('telegra.ph')) {
+        return `<button onclick="openReaderModal('${url}')" class="border border-gray-400 dark:border-gray-600 hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-800 dark:text-gray-200 transition-colors px-4 py-1.5 rounded-xl text-sm font-medium">${text}</button>`;
+      }
       return `<a href="${url}" target="_blank" class="border border-gray-400 dark:border-gray-600 hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-800 dark:text-gray-200 transition-colors px-4 py-1.5 rounded-xl text-sm font-medium">${text}</a>`;
     };
 
@@ -169,6 +172,108 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('download-modal').addEventListener('click', (e) => {
     if (e.target.id === 'download-modal') {
       closeDownloadModal();
+    }
+  });
+});
+
+async function openReaderModal(url) {
+  const modal = document.getElementById('reader-modal');
+  const modalCard = modal.querySelector('.card');
+  const titleEl = document.getElementById('reader-title');
+  const contentEl = document.getElementById('reader-content');
+
+  titleEl.innerText = "Loading...";
+  contentEl.innerHTML = `<div class="flex justify-center items-center h-32"><div class="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-blue-500"></div></div>`;
+  
+  modal.classList.remove('hidden');
+  setTimeout(() => {
+    modal.classList.remove('opacity-0');
+    modalCard.classList.remove('scale-95');
+  }, 10);
+
+  try {
+    const path = url.split('/').pop();
+    
+    const response = await fetch(`https://api.telegra.ph/getPage/${path}?return_content=true`);
+    const data = await response.json();
+
+    if (data.ok) {
+      titleEl.innerText = data.result.title;
+      contentEl.innerHTML = parseTelegraphNodes(data.result.content);
+    } else {
+      throw new Error('Post not found');
+    }
+  } catch (error) {
+    titleEl.innerText = "Error";
+    contentEl.innerHTML = `<div class="text-red-500 text-center py-8">Failed to load content. <br><br><a href="${url}" target="_blank" class="bg-blue-600 text-white px-4 py-2 rounded-lg mt-4 inline-block hover:bg-blue-700">Open in new tab instead</a></div>`;
+  }
+}
+
+function parseTelegraphNodes(nodes) {
+  if (!nodes) return '';
+  let html = '';
+  
+  for (const node of nodes) {
+    if (typeof node === 'string') {
+      html += node.replace(/&/g, "&amp;")
+                  .replace(/</g, "&lt;")
+                  .replace(/>/g, "&gt;")
+                  .replace(/\n/g, "<br>");
+    } else {
+      let { tag, attrs, children } = node;
+      let attrStr = '';
+      
+      if (attrs) {
+         if (tag === 'img' && attrs.src && attrs.src.startsWith('/')) {
+            attrs.src = 'https://telegra.ph' + attrs.src;
+         }
+         for (const [key, value] of Object.entries(attrs)) {
+            attrStr += ` ${key}="${value.toString().replace(/"/g, '&quot;')}"`;
+         }
+      }
+      
+      let classes = '';
+      if (tag === 'p') classes = ' class="mb-4 leading-relaxed whitespace-pre-wrap"';
+      else if (tag === 'a') classes = ' class="text-blue-500 hover:underline" target="_blank"';
+      else if (tag === 'ul') classes = ' class="list-disc pl-6 mb-4 space-y-1 marker:text-gray-500"';
+      else if (tag === 'ol') classes = ' class="list-decimal pl-6 mb-4 space-y-1 marker:text-gray-500"';
+      else if (tag === 'h3' || tag === 'h4') classes = ' class="text-xl font-bold mt-8 mb-3 text-gray-800 dark:text-gray-100"';
+      else if (tag === 'blockquote') classes = ' class="border-l-4 border-gray-400 dark:border-gray-600 pl-4 py-1 mb-4 italic text-gray-600 dark:text-gray-400"';
+      else if (tag === 'img') classes = ' class="rounded-xl max-w-full h-auto my-6 shadow-md"';
+      else if (tag === 'code') classes = ' class="bg-gray-200 dark:bg-gray-800 px-1.5 py-0.5 rounded text-sm font-mono text-pink-600 dark:text-pink-400"';
+
+      html += `<${tag}${attrStr}${classes}>`;
+      
+      if (children) {
+        html += parseTelegraphNodes(children);
+      }
+      
+      if (!['img', 'br', 'hr'].includes(tag)) {
+        html += `</${tag}>`;
+      }
+    }
+  }
+  return html;
+}
+
+function closeReaderModal() {
+  const modal = document.getElementById('reader-modal');
+  const modalCard = modal.querySelector('.card');
+  
+  modal.classList.add('opacity-0');
+  modalCard.classList.add('scale-95');
+  
+  setTimeout(() => {
+    modal.classList.add('hidden');
+  }, 300);
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('close-reader-btn').addEventListener('click', closeReaderModal);
+  
+  document.getElementById('reader-modal').addEventListener('click', (e) => {
+    if (e.target.id === 'reader-modal') {
+      closeReaderModal();
     }
   });
 });
