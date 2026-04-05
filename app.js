@@ -106,7 +106,7 @@ async function loadROMs() {
       }
       
       const card = document.createElement('a');
-      card.href = `rom.html?id=${rom.id}`;
+      card.href = `rom?id=${rom.id}`; 
       card.className = 'card flex flex-col h-full block transition-transform duration-200 hover:scale-[1.02] cursor-pointer';
       
       card.innerHTML = `
