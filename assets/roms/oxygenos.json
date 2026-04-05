@@ -1,0 +1,42 @@
+[ 
+  {
+    "id": "1",
+    "version": "Old Builds (F3, F4, 10T/Pro, 11T Pro)",
+    "date": "2025",
+    "changelog": "https://telegra.ph/None-04-05-19",
+    "notes": "https://telegra.ph/Notes-04-05-17",
+    "screenshots": "https://telegra.ph/None-04-05-19",
+    "downloads": [
+      {
+        "device": "Downloads",
+        "link": "https://www.pling.com/p/2169486/"
+      }
+      ]
+  },
+  {
+    "id": "2",
+    "version": "OnePlus 12R 16.0.3.500",
+    "date": "2026-02-22",
+    "changelog": "https://telegra.ph/OxygenOS-EEA-1603500-02-18",
+    "notes": "https://telegra.ph/Notes-02-18-7",
+    "screenshots": "https://t.me/oemports10tscreenshots/1709",
+    "downloads": [
+      {
+        "device": "POCO F3",
+        "link": "https://sfl.gl/87Lc"
+      },
+      {
+        "device": "POCO F4",
+        "link": "https://sfl.gl/W8uFFU5"
+      },
+      {
+        "device": "MI 10T/Pro",
+        "link": "https://sfl.gl/UBuh9"
+      },
+      {
+        "device": "MI 11T Pro",
+        "link": "https://sfl.gl/Yspd"
+      }
+      ]
+  }
+]

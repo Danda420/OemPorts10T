@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ROM Details</title>
+  <link rel="icon" type="image/png" href="assets/res/ic.png" />
+  <link rel="stylesheet" href="assets/styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="rom.js" defer></script>
+</head>
+<body>
+  <header class="p-6 shadow-md header-container">
+    <div class="flex justify-between items-center">
+      <div>
+        <h1 class="text-3xl font-bold">OEM ROM Ports & Kernel</h1>
+        <p class="subtitle">for Xiaomi Devices</p>
+      </div>
+    </div>
+    <div class="flex border-b mt-4 nav-divider">
+      <a href="index.html" class="tab-btn active px-4 py-2 font-medium text-sm flex items-center gap-2">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>
+        Back to Home
+      </a>
+    </div>
+  </header>
+
+  <main class="p-6 max-w-4xl mx-auto">
+    <div id="rom-header" class="card mb-10">
+      </div>
+
+    <div class="flex items-center gap-4 mb-6">
+      <h3 class="text-xl font-semibold">Downloads</h3>
+      <div class="flex-grow border-t border-gray-600 dark:border-gray-400"></div>
+    </div>
+
+    <div id="releases-container" class="space-y-4">
+      </div>
+  </main>
+
+  <footer class="text-center text-sm p-6 mt-8 footer-container">
+    <div class="flex flex-col space-y-1">
+      <div>&copy; 2026 Danda - OemPorts10T</div>
+      <div>
+        <a href="https://t.me/ProjectUnknown01" class="hover:underline">Telegram Channel</a>
+        <span> | </span>
+        <a href="https://t.me/OemPorts10T" class="hover:underline">Telegram Group</a>
+      </div>
+    </div>
+  </footer>
+  
+  <div id="download-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center bg-black/60 backdrop-blur-sm transition-opacity duration-300 opacity-0">
+    <div class="card relative max-w-md w-full mx-4 p-6 text-center transform scale-95 transition-transform duration-300 shadow-2xl">
+      
+      <button id="close-modal-btn" class="absolute top-4 right-4 text-gray-500 hover:text-gray-800 dark:text-gray-400 dark:hover:text-gray-200 transition-colors">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+      
+      <h3 class="text-2xl font-bold mb-4 text-gray-800 dark:text-gray-200">Reminder</h3>
+      
+      <div class="space-y-4 text-sm md:text-base text-gray-700 dark:text-gray-300 mb-8 px-2">
+        <p>Make sure you've read <span class="font-bold">Flasing Guide and Notes</span> before flashing the ROM or you'll encounter problems!</p>
+        <p>You are about to <span class="font-bold">leave</span> this site to download the ROM. You may need to <span class="font-bold">disable Ad-blocker or DNS</span> to proceed.</p>
+        <p>If you have trouble proceeding with the link you can watch this video:
+          <a href="https://youtube.com/shorts/_rm8xDcR2mw" target="_blank" class="text-blue-600 dark:text-blue-400 hover:underline">Video</a>
+        </p>
+        <p>DO NOT <span class="font-bold uppercase">mirror</span> nor <span class="font-bold uppercase">share</span> the DIRECT download link.</p>
+      </div>
+      
+      <div class="flex justify-center">
+        <a id="proceed-btn" href="#" target="_blank" class="bg-blue-600 text-white hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 px-8 py-2.5 rounded-xl font-semibold transition-all pointer-events-none opacity-50 select-none">
+          Proceed (5)
+        </a>
+      </div>
+      
+    </div>
+  </div>
+
+</body>
+</html>

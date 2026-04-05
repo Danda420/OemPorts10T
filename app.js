@@ -7,7 +7,6 @@ tailwind.config = {
 
 document.addEventListener('DOMContentLoaded', function() {
   setThemeFromSystem();
-  loadROMs();
   initTabs();
 });
 
@@ -71,52 +70,74 @@ function initTabs() {
   }
 }
 
-function loadROMs() {
-  fetch('assets/roms.json')
-    .then(response => {
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-      return response.json();
-    })
-    .then(roms => {
-      const container = document.getElementById('roms-container');
-      container.innerHTML = ''; // Clear any loading/placeholder content
+async function loadROMs() {
+  const container = document.getElementById('roms-container');
+  container.innerHTML = `
+    <div class="col-span-full flex justify-center items-center h-32">
+      <div class="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-blue-500"></div>
+    </div>
+  `;
+
+  try {
+    const response = await fetch('assets/roms.json');
+    if (!response.ok) throw new Error('Network response was not ok');
+    const roms = await response.json();
+    
+    container.innerHTML = ''; 
+    
+    for (const rom of roms) {
+      let latestVersion = 'N/A';
+      let latestDate = 'N/A';
       
-      roms.forEach(rom => {
-        const card = document.createElement('div');
-        card.className = 'card';
-        card.innerHTML = `
-          <img src="${rom.image}" alt="${rom.title} Logo" class="mb-4 w-full h-auto rounded-lg">
-          <h2 class="text-xl font-semibold mb-1">${rom.title}</h2>
-          <p class="desc mb-2">${rom.description}</p>
-          <p class="text-sm device-text">Devices: ${rom.devices}</p>
-          <button onclick="loadModal('${rom.infoUrl}')" 
-              class="inline-block mt-3 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded transition-colors duration-200">
-            Info
-          </button>
-          <a href="${rom.downloadUrl}" target="_blank" rel="noopener noreferrer" 
-             class="inline-block mt-3 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded transition-colors duration-200">
-            Downloads
-          </a>
-        `;
-        container.appendChild(card);
-      });
-    })
-    .catch(error => {
-      console.error('Error loading ROMs data:', error);
-      const container = document.getElementById('roms-container');
-      container.innerHTML = `
-        <div class="col-span-full text-center py-8">
-          <div class="bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-300 p-4 rounded-lg inline-block">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-            </svg>
-            Failed to load Data. Please try again later.
-          </div>
+      if (rom.releases) {
+        try {
+          const relRes = await fetch(rom.releases);
+          if (relRes.ok) {
+            const releases = await relRes.json();
+            if (releases && releases.length > 0) {
+              const latestRelease = releases[releases.length - 1]; 
+              latestVersion = latestRelease.version;
+              latestDate = latestRelease.date;
+            }
+          }
+        } catch (e) {
+          console.error(`Failed to fetch releases for ${rom.id}`);
+        }
+      }
+      
+      const card = document.createElement('a');
+      card.href = `rom.html?id=${rom.id}`;
+      card.className = 'card flex flex-col h-full block transition-transform duration-200 hover:scale-[1.02] cursor-pointer';
+      
+      card.innerHTML = `
+        <img src="${rom.image}" alt="${rom.title} Logo" class="mb-4 w-full h-auto rounded-lg">
+        <h2 class="text-xl font-semibold mb-1">${rom.title}</h2>
+        <p class="desc mb-4">${rom.description}</p>
+        
+        <div class="border-t border-gray-500/30 dark:border-gray-500/50 pt-3 mt-auto">
+          <p class="text-sm device-text mb-1">
+            Latest version: <span class="font-semibold">${latestVersion}</span>
+          </p>
+          <p class="text-sm device-text">
+            Updated: <span class="font-semibold">${latestDate}</span>
+          </p>
         </div>
       `;
-    });
+      container.appendChild(card);
+    }
+  } catch (error) {
+    console.error('Error loading ROMs data:', error);
+    container.innerHTML = `
+      <div class="col-span-full text-center py-8">
+        <div class="bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-300 p-4 rounded-lg inline-block">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+          </svg>
+          Failed to load Data. Please try again later.
+        </div>
+      </div>
+    `;
+  }
 }
 
 function loadKernels() {
