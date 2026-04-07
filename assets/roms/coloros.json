@@ -2,7 +2,8 @@
   {
     "id": "1",
     "version": "Old Builds (F3, F4, 10T/Pro, 11T Pro)",
-    "date": "2025",
+	"android_ver" : "15",
+    "date": "2025-07-30",
     "changelog": "https://telegra.ph/None-04-05-19",
     "notes": "https://telegra.ph/Notes-04-05-12",
     "screenshots": "https://telegra.ph/None-04-05-19",
@@ -16,6 +17,7 @@
   {
     "id": "2",
     "version": "OnePlus Ace 3 16.0.3.500",
+	"android_ver" : "16",
     "date": "2026-02-04",
     "changelog": "https://telegra.ph/ColorOS-1603500-02-04-2",
     "notes": "https://telegra.ph/Notes-02-04-6",

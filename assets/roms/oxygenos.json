@@ -2,7 +2,8 @@
   {
     "id": "1",
     "version": "Old Builds (F3, F4, 10T/Pro, 11T Pro)",
-    "date": "2025",
+	"android_ver" : "13-15",
+    "date": "2025-07-30",
     "changelog": "https://telegra.ph/None-04-05-19",
     "notes": "https://telegra.ph/Notes-04-05-17",
     "screenshots": "https://telegra.ph/None-04-05-19",
@@ -16,6 +17,7 @@
   {
     "id": "2",
     "version": "OnePlus 12R 16.0.3.500",
+	"android_ver" : "16",
     "date": "2026-02-22",
     "changelog": "https://telegra.ph/OxygenOS-EEA-1603500-02-18",
     "notes": "https://telegra.ph/Notes-02-18-7",

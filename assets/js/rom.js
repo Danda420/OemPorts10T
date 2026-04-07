@@ -74,7 +74,7 @@ function renderReleases(releases) {
           <h3 class="text-2xl font-bold">${release.version}</h3>
           ${latestTag}
         </div>
-        <p class="text-sm device-text mt-1">${release.date}</p>
+        <p class="text-sm device-text mt-1">Android ${release.android_ver} | ${release.date}</p>
       </div>
     `;
 

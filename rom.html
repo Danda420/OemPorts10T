@@ -5,11 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ROM Details</title>
   <link rel="icon" type="image/png" href="assets/res/ic.png" />
-  <link rel="stylesheet" href="assets/styles.css" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
   <script src="https://cdn.tailwindcss.com"></script>
-  <script src="rom.js" defer></script>
+  <script src="assets/js/rom.js" defer></script>
 </head>
 <body>
   <header class="p-6 shadow-md header-container">
@@ -81,7 +81,7 @@
   </div>
 
   <div id="reader-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center bg-black/60 backdrop-blur-sm transition-opacity duration-300 opacity-0">
-    <div class="card relative max-w-2xl w-full max-h-[80vh] flex flex-col mx-4 transform scale-95 transition-transform duration-300 shadow-2xl overflow-hidden">
+    <div class="card relative max-w-4xl w-full max-h-[80vh] flex flex-col mx-4 transform scale-95 transition-transform duration-300 shadow-2xl overflow-hidden">
       
       <div class="flex justify-between items-center p-5">
         <h3 id="reader-title" class="text-xl font-bold text-gray-800 dark:text-gray-200 line-clamp-1">Loading...</h3>
@@ -100,6 +100,5 @@
       
     </div>
   </div>
-
 </body>
 </html>

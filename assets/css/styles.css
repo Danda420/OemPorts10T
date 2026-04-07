@@ -133,3 +133,38 @@ body.light-mode .theme-toggle-btn {
 .light-mode .card .device-text {
   color: #555555;
 }
+
+#reader-content {
+  scrollbar-width: thin;
+  scrollbar-color: #4b5563 transparent;
+}
+
+body.light-mode #reader-content {
+  scrollbar-color: #9ca3af transparent;
+}
+
+#reader-content::-webkit-scrollbar {
+  width: 6px;
+}
+
+#reader-content::-webkit-scrollbar-track {
+  background: transparent; 
+  border-radius: 10px;
+}
+
+#reader-content::-webkit-scrollbar-thumb {
+  background: #4b5563;
+  border-radius: 10px;
+}
+
+#reader-content::-webkit-scrollbar-thumb:hover {
+  background: #6b7280;
+}
+
+body.light-mode #reader-content::-webkit-scrollbar-thumb {
+  background: #9ca3af;
+}
+
+body.light-mode #reader-content::-webkit-scrollbar-thumb:hover {
+  background: #6b7280;
+}

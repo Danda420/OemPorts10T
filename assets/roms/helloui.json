@@ -2,6 +2,7 @@
   {
     "id": "1",
     "version": "Old Builds (F3, F4, 10T/Pro, 11T Pro)",
+	"android_ver" : "14-15",
     "date": "2025-01-03",
     "changelog": "https://telegra.ph/None-04-05-19",
     "notes": "https://telegra.ph/Notes-04-05-14",

@@ -83,21 +83,21 @@ async function loadROMs() {
     if (!response.ok) throw new Error('Network response was not ok');
     const roms = await response.json();
     
-    container.innerHTML = ''; 
-    
-    for (const rom of roms) {
+    const enrichedRoms = await Promise.all(roms.map(async (rom) => {
       let latestVersion = 'N/A';
       let latestDate = 'N/A';
+      let timestamp = 0;
       
       if (rom.releases) {
         try {
-          const relRes = await fetch(rom.releases);
+          const relRes = await fetch(`${rom.releases}?t=${new Date().getTime()}`, { cache: 'no-store' });
           if (relRes.ok) {
             const releases = await relRes.json();
             if (releases && releases.length > 0) {
               const latestRelease = releases[releases.length - 1]; 
               latestVersion = latestRelease.version;
               latestDate = latestRelease.date;
+              timestamp = new Date(latestDate).getTime();
             }
           }
         } catch (e) {
@@ -105,8 +105,21 @@ async function loadROMs() {
         }
       }
       
+      return {
+        ...rom,
+        latestVersion,
+        latestDate,
+        timestamp
+      };
+    }));
+    
+    enrichedRoms.sort((a, b) => b.timestamp - a.timestamp);
+    
+    container.innerHTML = ''; 
+    
+    for (const rom of enrichedRoms) {
       const card = document.createElement('a');
-      card.href = `rom?id=${rom.id}`; 
+      card.href = `rom?id=${rom.id}`;
       card.className = 'card flex flex-col h-full block transition-transform duration-200 hover:scale-[1.02] cursor-pointer';
       
       card.innerHTML = `
@@ -116,10 +129,10 @@ async function loadROMs() {
         
         <div class="border-t border-gray-500/30 dark:border-gray-500/50 pt-3 mt-auto">
           <p class="text-sm device-text mb-1">
-            Latest version: <span class="font-semibold">${latestVersion}</span>
+            Latest version: <span class="font-semibold">${rom.latestVersion}</span>
           </p>
           <p class="text-sm device-text">
-            Updated: <span class="font-semibold">${latestDate}</span>
+            Updated: <span class="font-semibold">${rom.latestDate}</span>
           </p>
         </div>
       `;
