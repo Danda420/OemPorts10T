@@ -2,7 +2,7 @@
   {
     "id": "1",
     "version": "Old Builds (F3, F4, 10T/Pro, 11T Pro)",
-	"android_ver" : "13-15",
+    "android_ver" : "13-15",
     "date": "2025-07-30",
     "changelog": "https://telegra.ph/None-04-05-19",
     "notes": "https://telegra.ph/Notes-04-05-17",
@@ -17,7 +17,7 @@
   {
     "id": "2",
     "version": "OnePlus 12R 16.0.3.500",
-	"android_ver" : "16",
+    "android_ver" : "16",
     "date": "2026-02-22",
     "changelog": "https://telegra.ph/OxygenOS-EEA-1603500-02-18",
     "notes": "https://telegra.ph/Notes-02-18-7",
@@ -38,6 +38,33 @@
       {
         "device": "MI 11T Pro",
         "link": "https://sfl.gl/Yspd"
+      }
+      ]
+  },
+  {
+    "id": "3",
+    "version": "OnePlus 12R 16.0.5.701",
+    "android_ver" : "16",
+    "date": "2026-04-25",
+    "changelog": "https://telegra.ph/OxygenOS-1605701-04-27",
+    "notes": "https://telegra.ph/Notes-02-18-7",
+    "screenshots": "https://t.me/oemports10tscreenshots/1709",
+    "downloads": [
+      {
+        "device": "POCO F3",
+        "link": "https://sfl.gl/Zz0qZVb"
+      },
+      {
+        "device": "POCO F4",
+        "link": "https://sfl.gl/G6DtC"
+      },
+      {
+        "device": "MI 10T/Pro",
+        "link": "https://sfl.gl/cY8x9"
+      },
+      {
+        "device": "MI 11T Pro",
+        "link": "https://sfl.gl/klOCNZc"
       }
       ]
   }
